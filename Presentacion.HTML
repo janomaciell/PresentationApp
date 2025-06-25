@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RecetApp - Presentación</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .slide {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: slideIn 1s ease-out forwards;
+            margin-bottom: 50px;
+        }
+
+        @keyframes slideIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .slide.active {
+            animation-delay: 0.2s;
+        }
+
+        h1 {
+            font-size: 3.5em;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        h2 {
+            font-size: 2.8em;
+            color: #fff;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        h3 {
+            font-size: 2em;
+            color: #000000;
+            margin-bottom: 20px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transform: translateY(20px);
+            opacity: 0;
+            animation: cardSlideIn 0.8s ease-out forwards;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px) scale(1.02);
+        }
+
+        @keyframes cardSlideIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .feature-card:hover {
+            border-color: #667eea;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        .api-demo {
+            background: rgba(0, 0, 0, 0.8);
+            color: #00ff00;
+            padding: 20px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            text-align: left;
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+
+        .api-demo pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .architecture-diagram {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 30px 0;
+        }
+
+        .arch-layer {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px 40px;
+            margin: 10px;
+            border-radius: 10px;
+            min-width: 200px;
+            text-align: center;
+            position: relative;
+            animation: fadeInUp 1s ease-out forwards;
+        }
+
+        .arch-layer::after {
+            content: '↓';
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 20px;
+            color: #fff;
+        }
+
+        .arch-layer:last-child::after {
+            display: none;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .mockup-phone {
+            width: 250px;
+            height: 500px;
+            background: #333;
+            border-radius: 30px;
+            padding: 20px;
+            margin: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mockup-screen {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+            position: relative;
+            animation: screenGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes screenGlow {
+            from { box-shadow: 0 0 20px rgba(255, 107, 107, 0.5); }
+            to { box-shadow: 0 0 30px rgba(78, 205, 196, 0.8); }
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .tech-item {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px 25px;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .tech-item:hover {
+            background: #667eea;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .flow-diagram {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .flow-step {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            min-width: 150px;
+            position: relative;
+            animation: bounce 2s infinite;
+        }
+
+        .flow-step::after {
+            content: '→';
+            position: absolute;
+            right: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px;
+            color: #fff;
+        }
+
+        .flow-step:last-child::after {
+            display: none;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .demo-section {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            padding: 15px;
+            border-radius: 50%;
+            margin: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: #667eea;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #a8edea 0%, #fed6e3 100%);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border-left: 5px solid #667eea;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5em; }
+            h2 { font-size: 2em; }
+            .card { margin: 10px; padding: 20px; }
+            .features-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Slide 1: Portada -->
+        <div class="slide active">
+            <h1>RecetApp</h1>
+            <div class="card">
+                <h3 style="color: #333;">Aplicación Móvil de Recetas</h3>
+                <p><strong>Desarrollada en Android Studio con Kotlin</strong></p>
+                <p>Una plataforma completa para descubrir, explorar y gestionar recetas</p>
+                <div class="mockup-phone">
+                    <div class="mockup-screen">
+                        <h4>RecetApp</h4>
+                        <p>🍳</p>
+                        <p>Descubre recetas increíbles</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Características Principales -->
+        <div class="slide">
+            <h2>Características Principales</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3 style="color: #333;">🔐 Autenticación</h3>
+                    <p>Login seguro con Firebase Authentication usando cuentas de Gmail</p>
+                </div>
+                <div class="feature-card">
+                    <h3 style="color: #333;">🔍 Búsqueda Avanzada</h3>
+                    <p>Filtros por categorías, nombre y criterios personalizados</p>
+                </div>
+                <div class="feature-card">
+                    <h3 style="color: #333;">❤️ Favoritos</h3>
+                    <p>Guarda tus recetas favoritas en la nube con Firebase</p>
+                </div>
+                <div class="feature-card">
+                    <h3 style="color: #333;">📅 Planificador</h3>
+                    <p>Calendario semanal con sugerencias de comidas automáticas</p>
+                </div>
+                <div class="feature-card">
+                    <h3 style="color: #333;">📱 Offline</h3>
+                    <p>Acceso sin conexión con base de datos local Room</p>
+                </div>
+                <div class="feature-card">
+                    <h3 style="color: #333;">👤 Perfil</h3>
+                    <p>Gestión completa del perfil de usuario con Firebase Storage</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Tecnologías Utilizadas -->
+        <div class="slide">
+            <h2>Stack Tecnológico</h2>
+            <div class="tech-stack">
+                <div class="tech-item">Kotlin</div>
+                <div class="tech-item">Android Studio</div>
+                <div class="tech-item">Firebase Auth</div>
+                <div class="tech-item">Firebase Database</div>
+                <div class="tech-item">Firebase Storage</div>
+                <div class="tech-item">Room Database</div>
+                <div class="tech-item">Retrofit</div>
+                <div class="tech-item">Glide</div>
+                <div class="tech-item">MVVM</div>
+                <div class="tech-item">TheMealDB API</div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Arquitectura MVVM -->
+        <div class="slide">
+            <h2>Arquitectura MVVM</h2>
+            <div class="architecture-diagram">
+                <div class="arch-layer" style="animation-delay: 0.1s;">
+                    <h3 style="color: #333;">Vista (View)</h3>
+                    <p>Activities & Fragments</p>
+                    <p>UI Components</p>
+                </div>
+                <div class="arch-layer" style="animation-delay: 0.3s;">
+                    <h3 style="color: #333;">ViewModel</h3>
+                    <p>Lógica de negocio</p>
+                    <p>Gestión de estado UI</p>
+                </div>
+                <div class="arch-layer" style="animation-delay: 0.5s;">
+                    <h3 style="color: #333;">Model</h3>
+                    <p>Repository Pattern</p>
+                    <p>Data Sources</p>
+                </div>
+                <div class="arch-layer" style="animation-delay: 0.7s;">
+                    <h3 style="color: #333;">Fuentes de Datos</h3>
+                    <p>TheMealDB API | Firebase | Room DB</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: API Integration Demo -->
+        <div class="slide">
+            <h2>Integración con TheMealDB API</h2>
+            <div class="demo-section">
+                <h3>Ejemplo de Consulta a la API</h3>
+                <div class="api-demo">
+                    <pre id="api-response">
+// Endpoint: Búsqueda por categoría
+GET https://www.themealdb.com/api/json/v1/1/filter.php?c=Chicken
+
+// Respuesta JSON
+{
+  "meals": [
+    {
+      "idMeal": "52940",
+      "strMeal": "Brown Stew Chicken",
+      "strMealThumb": "https://www.themealdb.com/images/media/meals/sypxpx1515365095.jpg"
+    },
+    {
+      "idMeal": "52795",
+      "strMeal": "Chicken Handi",
+      "strMealThumb": "https://www.themealdb.com/images/media/meals/wyxwsp1486979827.jpg"
+    }
+  ]
+}
+                    </pre>
+                </div>
+                <button class="btn" onclick="simulateApiCall()">Simular Llamada API</button>
+                <div id="api-loader" class="loading-spinner" style="display: none;"></div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Endpoints Principales -->
+        <div class="slide">
+            <h2>Endpoints Principales de la API</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3 style="color: #333;">🔍 Buscar por Nombre</h3>
+                    <code>/search.php?s={query}</code>
+                    <p>Busca recetas por nombre</p>
+                </div>
+                <div class="feature-card">
+                    <h3 style="color: #333;">📋 Listar Categorías</h3>
+                    <code>/categories.php</code>
+                    <p>Obtiene todas las categorías</p>
+                </div>
+                <div class="feature-card">
+                    <h3 style="color: #333;">🏷️ Filtrar por Categoría</h3>
+                    <code>/filter.php?c={category}</code>
+                    <p>Filtra recetas por categoría</p>
+                </div>
+                <div class="feature-card">
+                    <h3 style="color: #333;">🔎 Buscar por ID</h3>
+                    <code>/lookup.php?i={id}</code>
+                    <p>Obtiene detalles de una receta</p>
+                </div>
+                <div class="feature-card">
+                    <h3 style="color: #333;">🎲 Receta Aleatoria</h3>
+                    <code>/random.php</code>
+                    <p>Obtiene una receta aleatoria</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Flujo de Datos -->
+        <div class="slide">
+            <h2>Flujo de Datos</h2>
+            <div class="flow-diagram">
+                <div class="flow-step" style="animation-delay: 0.1s;">
+                    <h4>Usuario</h4>
+                    <p>Interactúa con la UI</p>
+                </div>
+                <div class="flow-step" style="animation-delay: 0.3s;">
+                    <h4>ViewModel</h4>
+                    <p>Procesa la acción</p>
+                </div>
+                <div class="flow-step" style="animation-delay: 0.5s;">
+                    <h4>Repository</h4>
+                    <p>Gestiona fuentes de datos</p>
+                </div>
+                <div class="flow-step" style="animation-delay: 0.7s;">
+                    <h4>API/DB</h4>
+                    <p>Provee los datos</p>
+                </div>
+            </div>
+            
+            <div class="highlight">
+                <h3>Ejemplo Práctico: Agregar a Favoritos</h3>
+                <ol>
+                    <li><strong>Usuario:</strong> Presiona el botón ❤️ en una receta</li>
+                    <li><strong>ViewModel:</strong> Recibe el evento y valida los datos</li>
+                    <li><strong>Repository:</strong> Coordina el guardado local (Room) y remoto (Firebase)</li>
+                    <li><strong>Firebase:</strong> Almacena la receta en /favorites/{userUID}/{idMeal}</li>
+                    <li><strong>Room:</strong> Guarda una copia local para acceso offline</li>
+                    <li><strong>UI:</strong> Se actualiza mostrando el corazón relleno</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- Slide 8: Pantallas de la App -->
+        <div class="slide">
+            <h2>Pantallas Principales</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3 style="color: #333;">🚀 Splash Screen</h3>
+                    <p>Pantalla de inicio con logo y verificación de autenticación</p>
+                </div>
+                <div class="feature-card">
+                    <h3 style="color: #333;">🔐 Login/Registro</h3>
+                    <p>Autenticación con Google Firebase</p>
+                </div>
+                <div class="feature-card">
+                    <h3 style="color: #333;">🏠 Inicio</h3>
+                    <p>Dashboard principal con recetas destacadas</p>
+                </div>
+                <div class="feature-card">
+                    <h3 style="color: #333;">📂 Categorías</h3>
+                    <p>Exploración de recetas por categorías</p>
+                </div>
+                <div class="feature-card">
+                    <h3 style="color: #333;">📖 Detalles</h3>
+                    <p>Información completa de la receta con video</p>
+                </div>
+                <div class="feature-card">
+                    <h3 style="color: #333;">❤️ Favoritos</h3>
+                    <p>Lista de recetas guardadas</p>
+                </div>
+                <div class="feature-card">
+                    <h3 style="color: #333;">👤 Perfil</h3>
+                    <p>Gestión de información personal</p>
+                </div>
+                <div class="feature-card">
+                    <h3 style="color: #333;">📅 Calendario</h3>
+                    <p>Planificador semanal de comidas</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Almacenamiento de Datos -->
+        <div class="slide">
+            <h2>Estrategia de Almacenamiento</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3 style="color: #333;">🏠 Room Database (Local)</h3>
+                    <ul style="text-align: left;">
+                        <li><strong>Tabla Recetas:</strong> idMeal, nombre, imagen, instrucciones</li>
+                        <li><strong>Tabla Plan Semanal:</strong> día, tipo de comida, receta</li>
+                        <li><strong>Propósito:</strong> Acceso offline y cache</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h3 style="color: #333;">☁️ Firebase (Remoto)</h3>
+                    <ul style="text-align: left;">
+                        <li><strong>Favoritos:</strong> /favorites/{userUID}/{idMeal}</li>
+                        <li><strong>Perfil:</strong> /users/{userUID}</li>
+                        <li><strong>Fotos:</strong> Firebase Storage</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="demo-section">
+                <h3>Ejemplo de Estructura Firebase</h3>
+                <div class="api-demo">
+                    <pre>
+{
+  "favorites": {
+    "user123": {
+      "52940": {
+        "idMeal": "52940",
+        "strMeal": "Brown Stew Chicken",
+        "strMealThumb": "https://..."
+      }
+    }
+  },
+  "users": {
+    "user123": {
+      "name": "Juan Pérez",
+      "phone": "+54911234567",
+      "country": "Argentina"
+    }
+  }
+}
+                    </pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Funcionalidades Destacadas -->
+        <div class="slide">
+            <h2>Funcionalidades Destacadas</h2>
+            
+            <div class="highlight">
+                <h3 style="color: #333;">🎯 Planificador de Comidas Inteligente</h3>
+                <p>Genera automáticamente un plan semanal con 4 comidas diarias (desayuno, almuerzo, merienda, cena) usando recetas aleatorias de la API.</p>
+            </div>
+
+            <div class="highlight">
+                <h3 style="color: #333;">🔄 Sincronización Híbrida</h3>
+                <p>Los datos se guardan localmente (Room) para acceso offline y se sincronizan con Firebase para acceso desde múltiples dispositivos.</p>
+            </div>
+
+            <div class="highlight">
+                <h3 style="color: #333;">🎥 Integración Multimedia</h3>
+                <p>Videos de YouTube integrados para cada receta, carga optimizada de imágenes con Glide y soporte para fotos de perfil.</p>
+            </div>
+
+            <div class="highlight">
+                <h3 style="color: #333;">🔍 Búsqueda Inteligente</h3>
+                <p>Múltiples filtros: por nombre, categoría, ingredientes. Búsqueda en tiempo real con debounce para optimizar las llamadas a la API.</p>
+            </div>
+        </div>
+
+        <!-- Slide 11: Demo en Vivo -->
+        <div class="slide">
+            <h2>Demostración Interactiva</h2>
+            <div class="demo-section">
+                <h3 style="color: #333;">Simulador de Funcionalidades</h3>
+                <div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;">
+                    <button class="btn" onclick="simulateLogin()">🔐 Simular Login</button>
+                    <button class="btn" onclick="simulateSearch()">🔍 Buscar Recetas</button>
+                    <button class="btn" onclick="simulateFavorite()">❤️ Agregar Favorito</button>
+                    <button class="btn" onclick="simulateWeekPlan()">📅 Generar Plan Semanal</button>
+                </div>
+                
+                <div id="demo-output" class="api-demo" style="display: none; margin-top: 20px;">
+                    <pre id="demo-text"></pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 12: Repositorio y Recursos -->
+        <div class="slide">
+            <h2>Recursos del Proyecto</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3 style="color: #333;">📂 Código Fuente</h3>
+                    <p><a href="https://github.com/janomaciell/RecetApp-Completa-V1" target="_blank">GitHub Repository</a></p>
+                    <p>Código completo del proyecto con documentación</p>
+                </div>
+                <div class="feature-card">
+                    <h3 style="color: #333;">🎨 Diseño UI/UX</h3>
+                    <p><a href="https://www.figma.com/design/z8olaIrJF4bU7l0UbLbamC/RecetApp" target="_blank">Figma Wireframes</a></p>
+                    <p>Prototipos y diseños de todas las pantallas</p>
+                </div>
+                <div class="feature-card">
+                    <h3 style="color: #333;">🎥 Video Demo</h3>
+                    <p><a href="https://drive.google.com/file/d/1sxLgFUUjUQbMjrX9hovaoG485_xMNanw/view" target="_blank">Google Drive</a></p>
+                    <p>Demostración completa de la aplicación</p>
+                </div>
+                <div class="feature-card">
+                    <h3 style="color: #333;">🍽️ API Externa</h3>
+                    <p><a href="https://www.themealdb.com/api.php" target="_blank">TheMealDB API</a></p>
+                    <p>Base de datos gratuita de recetas</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 13: Conclusiones -->
+        <div class="slide">
+            <h2>Conclusiones</h2>
+            <div class="card">
+                <h3 style="color: #333;">✅ Objetivos Cumplidos</h3>
+                <ul style="text-align: left; margin: 20px 0;">
+                    <li>✓ Aplicación nativa Android funcional</li>
+                    <li>✓ Integración completa con APIs externas</li>
+                    <li>✓ Arquitectura MVVM implementada</li>
+                    <li>✓ Almacenamiento híbrido (local + remoto)</li>
+                    <li>✓ Autenticación segura con Firebase</li>
+                    <li>✓ Interfaz de usuario intuitiva</li>
+                    <li>✓ Funcionalidades offline</li>
+                </ul>
+                
+                <h3 style="color: #333;">🚀 Tecnologías Dominadas</h3>
+                <p>Kotlin • Android Studio • Firebase • Room • Retrofit • MVVM • API Integration</p>
+                
+                <h3 style="color: #333;">📱 Resultado Final</h3>
+                <p>Una aplicación completa, funcional y escalable que demuestra competencias en desarrollo móvil moderno</p>
+            </div>
+        </div>
+
+        <!-- Navegación -->
+        <div class="navigation">
+            <button class="nav-btn" onclick="previousSlide()">◀</button>
+            <button class="nav-btn" onclick="nextSlide()">▶</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+                slide.style.display = i === index ? 'flex' : 'none';
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            showSlide(currentSlide);
+        }
+
+        function previousSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            showSlide(currentSlide);
+        }
+
+        // Navegación con teclado
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') nextSlide();
+            if (e.key === 'ArrowLeft') previousSlide();
+        });
+
+        // Inicializar
+        showSlide(0);
+
+        // Funciones de simulación
+        function simulateApiCall() {
+            const loader = document.getElementById('api-loader');
+            const response = document.getElementById('api-response');
+            
+            loader.style.display = 'block';
+            
+            setTimeout(() => {
+                loader.style.display = 'none';
+                response.innerHTML = `
+// ✅ Respuesta exitosa de TheMealDB API
+{
+  "meals": [
+    {
+      "idMeal": "52940",
+      "strMeal": "Brown Stew Chicken",
+      "strMealThumb": "https://www.themealdb.com/images/.../sypxpx1515365095.jpg",
+      "strCategory": "Chicken",
+      "strArea": "Jamaican",
+      "strInstructions": "Season chicken with salt and pepper...",
+      "strIngredient1": "Chicken",
+      "strMeasure1": "1 whole",
+      "strYoutube": "https://www.youtube.com/watch?v=..."
+    }
+  ]
+}
+
+// 🔄 Procesando con Retrofit...
+// ✅ Datos almacenados en Room Database
+// ✅ UI actualizada con nuevas recetas
+                `;
+            }, 2000);
+        }
+
+        function simulateLogin() {
+            const output = document.getElementById('demo-output');
+            const text = document.getElementById('demo-text');
+            
+            output.style.display = 'block';
+            text.innerHTML = `
+🔐 SIMULACIÓN DE LOGIN CON FIREBASE
+
+1. Usuario presiona "Iniciar Sesión con Google"
+2. Firebase Auth abre el selector de cuenta
+3. Usuario selecciona cuenta de Gmail
+4. Firebase verifica credenciales...
+   ✅ Token de autenticación recibido
+   ✅ UID del usuario: "user_abc123"
+   ✅ Email: "usuario@gmail.com"
+   
+5. Guardando sesión en SharedPreferences...
+6. Redirigiendo a pantalla principal...
+
+🎉 LOGIN EXITOSO
+Usuario autenticado correctamente
+            `;
+        }
+
+        function simulateSearch() {
+            const output = document.getElementById('demo-output');
+            const text = document.getElementById('demo-text');
+            
+            output.style.display = 'block';
+            text.innerHTML = `
+🔍 SIMULACIÓN DE BÚSQUEDA
+
+Query: "Pasta"
+Endpoint: /search.php?s=pasta
+
+🔄 Ejecutando búsqueda...
+📡 Llamada a TheMealDB API...
+📥 Respuesta recibida: 12 recetas encontradas
+
+Resultados:
+1. 🍝 Pasta with Spinach and Ricotta
+2. 🍝 Pasta and Bacon
+3. 🍝 Pasta Carbonara
+4. 🍝 Pasta Puttanesca
+5. 🍝 Pasta Arrabiata
+
+💾 Guardando en cache local (Room)...
+🔄 Actualizando RecyclerView...
+✅ Búsqueda completada
+            `;
+        }
+
+        function simulateFavorite() {
+            const output = document.getElementById('demo-output');
+            const text = document.getElementById('demo-text');
+            
+            output.style.display = 'block';
+            text.innerHTML = `
+❤️ SIMULACIÓN DE AGREGAR FAVORITO
+
+Receta seleccionada: "Chicken Teriyaki"
+ID: 52940
+
+1. Validando sesión de usuario... ✅
+2. Preparando datos para Firebase...
+   
+   Estructura:
+   /favorites/user_abc123/52940 {
+     "idMeal": "52940",
+     "strMeal": "Chicken Teriyaki",
+     "strMealThumb": "https://...",
+     "dateAdded": "2024-06-25T10:30:00Z"
+   }
+
+3. 💾 Guardando en Firebase Database...
+4. 💾 Guardando copia local en Room...
+5. 🔄 Actualizando UI (corazón relleno)...
+
+✅ Receta agregada a favoritos exitosamente
+            `;
+        }
+
+        function simulateWeekPlan() {
+            const output = document.getElementById('demo-output');
+            const text = document.getElementById('demo-text');
+            
+            output.style.display = 'block';
+            text.innerHTML = `
+📅 SIMULACIÓN DE PLAN SEMANAL
+
+🔄 Generando plan para la semana...
+📡 Obteniendo recetas aleatorias de la API...
+
+LUNES:
+🌅 Desayuno: Pancakes
+🍽️ Almuerzo: Chicken Curry
+🥪 Merienda: Fruit Salad
+🌙 Cena: Beef Stew
+
+MARTES:
+🌅 Desayuno: French Toast
+🍽️ Almuerzo: Fish and Chips
+🥪 Merienda: Smoothie Bowl
+🌙 Cena: Pasta Carbonara
+
+MIÉRCOLES:
+🌅 Desayuno: Omelette
+🍽️ Almuerzo: Chicken Teriyaki
+🥪 Merienda: Yogurt Parfait
+🌙 Cena: Lamb Tagine
+
+💾 Guardando plan en Room Database...
+🔄 Actualizando vista de calendario...
+✅ Plan semanal generado exitosamente
+
+Total de recetas: 28 (7 días × 4 comidas)
+            `;
+        }
+
+        // Animaciones adicionales
+        function animateCards() {
+            const cards = document.querySelectorAll('.feature-card');
+            cards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+            });
+        }
+
+        // Auto-advance para presentación automática (opcional)
+        let autoAdvance = false;
+        let autoAdvanceInterval;
+
+        function toggleAutoAdvance() {
+            autoAdvance = !autoAdvance;
+            if (autoAdvance) {
+                autoAdvanceInterval = setInterval(nextSlide, 10000); // 10 segundos
+            } else {
+                clearInterval(autoAdvanceInterval);
+            }
+        }
+
+        // Funciones de utilidad
+        function resetDemo() {
+            document.getElementById('demo-output').style.display = 'none';
+        }
+
+        // Event listeners adicionales
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('tech-item')) {
+                e.target.style.transform = 'scale(1.2) rotate(5deg)';
+                setTimeout(() => {
+                    e.target.style.transform = 'scale(1)';
+                }, 300);
+            }
+        });
+
+        // Inicialización de animaciones
+        window.addEventListener('load', () => {
+            animateCards();
+            
+            // Efecto de typing para el título
+            const title = document.querySelector('h1');
+            const originalText = title.textContent;
+            title.textContent = '';
+            
+            let i = 0;
+            const typeWriter = () => {
+                if (i < originalText.length) {
+                    title.textContent += originalText.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 150);
+                }
+            };
+            
+            setTimeout(typeWriter, 1000);
+        });
+
+        // Efectos de hover mejorados
+        document.addEventListener('mouseover', (e) => {
+            if (e.target.classList.contains('mockup-phone')) {
+                e.target.style.transform = 'scale(1.05) rotateY(10deg)';
+            }
+        });
+
+        document.addEventListener('mouseout', (e) => {
+            if (e.target.classList.contains('mockup-phone')) {
+                e.target.style.transform = 'scale(1) rotateY(0deg)';
+            }
+        });
+
+        // Progress indicator
+        function updateProgress() {
+            const progress = ((currentSlide + 1) / totalSlides) * 100;
+            console.log(`Progreso: ${Math.round(progress)}% (${currentSlide + 1}/${totalSlides})`);
+        }
+
+        // Actualizar progreso al cambiar slide
+        const originalShowSlide = showSlide;
+        showSlide = function(index) {
+            originalShowSlide(index);
+            updateProgress();
+        };
+    </script>
+
+    <style>
+        /* Estilos adicionales para mejorar la presentación */
+        .slide-counter {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            z-index: 1000;
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            transition: width 0.3s ease;
+            z-index: 1001;
+        }
+
+        /* Estilos para impresión */
+        @media print {
+            .navigation, .slide-counter, .progress-bar {
+                display: none !important;
+            }
+            
+            .slide {
+                page-break-after: always;
+                min-height: auto;
+                display: block !important;
+                opacity: 1 !important;
+                transform: none !important;
+            }
+            
+            body {
+                background: white !important;
+                color: black !important;
+            }
+            
+            .card, .feature-card {
+                background: white !important;
+                border: 1px solid #ccc !important;
+            }
+        }
+
+        /* Animaciones personalizadas adicionales */
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .slide:nth-child(odd) .card {
+            animation: slideInLeft 1s ease-out forwards;
+        }
+
+        .slide:nth-child(even) .card {
+            animation: slideInRight 1s ease-out forwards;
+        }
+
+        /* Responsive mejorado */
+        @media (max-width: 480px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .flow-diagram {
+                flex-direction: column;
+            }
+            
+            .flow-step::after {
+                content: '↓';
+                top: auto;
+                bottom: -25px;
+                right: 50%;
+                transform: translateX(50%);
+            }
+            
+            .tech-stack {
+                gap: 10px;
+            }
+            
+            .tech-item {
+                padding: 10px 15px;
+                font-size: 14px;
+            }
+        }
+    </style>
+
+    <!-- Contador de slides y barra de progreso -->
+    <div class="slide-counter">
+        <span id="slide-counter-text">1 / 13</span>
+    </div>
+    <div class="progress-bar" id="progress-bar"></div>
+
+    <script>
+        // Actualizar contador y barra de progreso
+        function updateSlideIndicators() {
+            const counterText = document.getElementById('slide-counter-text');
+            const progressBar = document.getElementById('progress-bar');
+            
+            counterText.textContent = `${currentSlide + 1} / ${totalSlides}`;
+            
+            const progress = ((currentSlide + 1) / totalSlides) * 100;
+            progressBar.style.width = `${progress}%`;
+        }
+
+        // Sobrescribir showSlide para incluir indicadores
+        const originalShowSlideFunction = showSlide;
+        showSlide = function(index) {
+            currentSlide = index;
+            originalShowSlideFunction(index);
+            updateSlideIndicators();
+        };
+
+        // Inicializar indicadores
+        updateSlideIndicators();
+
+        // Función para ir a slide específico (útil para navegación)
+        function goToSlide(index) {
+            if (index >= 0 && index < totalSlides) {
+                showSlide(index);
+            }
+        }
+
+        // Atajos de teclado adicionales
+        document.addEventListener('keydown', (e) => {
+            switch(e.key) {
+                case 'Home':
+                    goToSlide(0);
+                    break;
+                case 'End':
+                    goToSlide(totalSlides - 1);
+                    break;
+                case 'F5':
+                    e.preventDefault();
+                    location.reload();
+                    break;
+                case 'p':
+                case 'P':
+                    window.print();
+                    break;
+            }
+        });
+
+        // Función para presentación en pantalla completa
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen();
+            } else {
+                document.exitFullscreen();
+            }
+        }
+
+        // Agregar botón de pantalla completa
+        const navigation = document.querySelector('.navigation');
+        const fullscreenBtn = document.createElement('button');
+        fullscreenBtn.className = 'nav-btn';
+        fullscreenBtn.innerHTML = '⛶';
+        fullscreenBtn.title = 'Pantalla completa';
+        fullscreenBtn.onclick = toggleFullscreen;
+        navigation.appendChild(fullscreenBtn);
+
+        console.log('🎉 Presentación RecetApp cargada exitosamente!');
+        console.log('💡 Atajos de teclado:');
+        console.log('   → / Espacio: Siguiente slide');
+        console.log('   ←: Slide anterior');
+        console.log('   Home: Primer slide');
+        console.log('   End: Último slide');
+        console.log('   P: Imprimir');
+        console.log('   F5: Recargar');
+    </script>
+</body>
+</html>
